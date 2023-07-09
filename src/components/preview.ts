@@ -5,8 +5,8 @@ import {
 } from "@codesandbox/sandpack-client";
 import { CSSResultGroup, LitElement, PropertyValueMap, css, html } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
-import exercises from "../exercises/index";
-import combineTemplateFilesToSetup from "../helpers/combineTemplateFilesToSetup";
+import { consume } from "@lit-labs/context";
+import { Context, sandpackContext } from "../contexts/context";
 
 @customElement("sandpack-preview")
 class Preview extends LitElement {
@@ -22,16 +22,14 @@ class Preview extends LitElement {
     }
   `;
 
+  @consume<any>({ context: sandpackContext, subscribe: true })
+  sandpack!: Context;
+
+  @property({ type: 'String' })
   template: "vite" = "vite";
 
   @query("#iframe")
   iframe!: HTMLIFrameElement;
-
-  @property({ type: Object })
-  files = exercises[0];
-
-  @property({ type: String })
-  environment = "vanilla";
 
   @state()
   client: SandpackClient | null = null;
@@ -40,23 +38,25 @@ class Preview extends LitElement {
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     const options: ClientOptions = {};
-    const lesson = exercises[0];
+    const sandpack = this.sandpack
 
-    const files = combineTemplateFilesToSetup({
-      template: "vite",
-      files: lesson.files,
-      customSetup: lesson.customSetup,
-    });
+    console.log('sandy', sandpack)
 
-    loadSandpackClient(this.iframe, files, options).then((client) => {
+    loadSandpackClient(this.iframe, sandpack, options).then((client) => {
       this.client = client;
     });
   }
 
+  updateClient() {
+    const client = this.client;
+    if (!client) return;
+
+    this.client?.updateSandbox()
+  }
+
   render() {
     return html` <div>
-      <p id="fake">Code preview</p>
-      <iframe id="iframe"> </iframe>
+      <iframe id="iframe"></iframe>
     </div>`;
   }
 }

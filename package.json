@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@codesandbox/sandpack-client": "^2.6.9",
+    "@lit-labs/context": "^0.3.3",
     "lit": "^2.7.5"
   },
   "devDependencies": {
+    "prettier": "^3.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
   }
