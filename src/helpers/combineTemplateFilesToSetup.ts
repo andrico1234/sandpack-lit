@@ -1,15 +1,19 @@
+import { SandboxSetup } from "@codesandbox/sandpack-client";
 import SANDBOX_TEMPLATES from "../templates/index";
-import { SandboxTemplate, SandpackFiles } from "../types";
+import { SandboxTemplate, SandpackFiles, SandpackSetup } from "../types";
 import convertedFilesToBundlerFiles from "./convertedFilesToBundlerFiles";
 
 const combineTemplateFilesToSetup = ({
   files,
   template,
+  customSetup,
 }: {
   files?: SandpackFiles;
   template?: "vite";
-}): SandboxTemplate => {
+  customSetup?: SandpackSetup;
+}): SandboxSetup => {
   if (!template) {
+    // what happens if someone passes no template, but a custom setup?
     const defaultTemplate =
       SANDBOX_TEMPLATES.vite as unknown as SandboxTemplate;
 
@@ -19,7 +23,7 @@ const combineTemplateFilesToSetup = ({
         ...defaultTemplate.files,
         ...convertedFilesToBundlerFiles(files),
       },
-    } as unknown as SandboxTemplate;
+    } as unknown as SandboxSetup;
   }
 
   const baseTemplate = SANDBOX_TEMPLATES[
@@ -31,31 +35,23 @@ const combineTemplateFilesToSetup = ({
     );
   }
 
-  // If no setup and not files, the template is used entirely
-  if (!files) {
-    return baseTemplate;
+  if (!customSetup && !files) {
+    return baseTemplate as SandboxSetup;
   }
 
-  // Merge the setup on top of the template
   return {
-    /**
-     * The input setup might have files in the simple form Record<string, string>
-     * so we convert them to the sandbox template format
-     */
     files: convertedFilesToBundlerFiles({ ...baseTemplate.files, ...files }),
-    /**
-     * Merge template dependencies and user custom dependencies.
-     * As a rule, the custom dependencies must overwrite the template ones.
-     */
     dependencies: {
       ...baseTemplate.dependencies,
+      ...customSetup?.dependencies,
     },
     devDependencies: {
       ...baseTemplate.devDependencies,
+      ...customSetup?.devDependencies,
     },
     main: baseTemplate.main,
     environment: baseTemplate.environment,
-  } as SandboxTemplate;
+  } as SandboxSetup;
 };
 
 export default combineTemplateFilesToSetup;

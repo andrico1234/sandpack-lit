@@ -1,12 +1,15 @@
-const exercises = [
+import { SandpackFiles, SandpackSetup } from "../types";
+import exerciseOne from "./exercise-one";
+
+export interface Exercise {
+  files: SandpackFiles;
+  customSetup?: SandpackSetup;
+}
+
+const exercises: Exercise[] = [
   {
-    "/package.json": {
-      code: JSON.stringify({
-        main: "index.js",
-        dependencies: { lit: "latest" },
-      }),
-    },
-    "/index.js": { code: "console.log('Hello world')" },
+    files: exerciseOne.files,
+    customSetup: exerciseOne.customSetup,
   },
 ];
 

@@ -6,10 +6,7 @@ import {
 import { CSSResultGroup, LitElement, PropertyValueMap, css, html } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import exercises from "../exercises/index";
-import SANDPACK_TEMPLATES from "../templates";
-
-// useFiles
-// - update file
+import combineTemplateFilesToSetup from "../helpers/combineTemplateFilesToSetup";
 
 @customElement("sandpack-preview")
 class Preview extends LitElement {
@@ -42,17 +39,16 @@ class Preview extends LitElement {
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    const template = SANDPACK_TEMPLATES[this.template];
-
     const options: ClientOptions = {};
+    const lesson = exercises[0];
 
-    loadSandpackClient(
-      this.iframe,
-      {
-        files: template.files,
-      },
-      options
-    ).then((client) => {
+    const files = combineTemplateFilesToSetup({
+      template: "vite",
+      files: lesson.files,
+      customSetup: lesson.customSetup,
+    });
+
+    loadSandpackClient(this.iframe, files, options).then((client) => {
       this.client = client;
     });
   }

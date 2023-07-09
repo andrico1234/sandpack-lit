@@ -35,6 +35,10 @@ document.getElementById("app").innerHTML = \`
           build: "vite build",
           preview: "vite preview",
         },
+        // This isn't working when I override
+        dependencies: {
+          lit: "2.6.1",
+        },
         devDependencies: {
           vite: "4.1.4",
           "esbuild-wasm": "0.17.12",

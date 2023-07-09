@@ -1,0 +1,23 @@
+:root {
+  --background: gold;
+}
+
+body[data-theme="default"] {
+  background: var(--background);
+}
+
+body[data-theme="red"] {
+  background: red;
+}
+
+body[data-theme="green"] {
+  background: green;
+}
+
+body[data-theme="blue"] {
+  background: blue;
+}
+
+body[data-theme="gold"] {
+  background: goldenrod;
+}

@@ -9,6 +9,11 @@ export interface SandboxTemplate {
 
 type SandboxEnvironment = "node";
 
+export interface SandpackSetup {
+  dependencies?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+}
+
 export interface SandpackFile {
   code: string;
   hidden?: boolean;
