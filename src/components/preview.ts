@@ -8,6 +8,8 @@ import { customElement, property, query, state } from "lit/decorators.js";
 import { consume } from "@lit-labs/context";
 import { SandpackContext, sandpackContext } from "../contexts/context";
 
+const options: ClientOptions = {};
+
 @customElement("sandpack-preview")
 class Preview extends LitElement {
   static styles?: CSSResultGroup | undefined = css`
@@ -40,12 +42,19 @@ class Preview extends LitElement {
   iframe!: HTMLIFrameElement;
 
   @state()
-  client: SandpackClient | null = null;
+  client!: SandpackClient;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+
+    if (!this.sandpack) {
+      console.warn('No sandpack context found')
+    }
+  }
 
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
-    const options: ClientOptions = {};
     const sandpack = this.sandpack
 
     const { files } = sandpack
@@ -55,11 +64,15 @@ class Preview extends LitElement {
     });
   }
 
+  protected updated() {
+    this.updateClient()
+  }
+
   updateClient() {
     const client = this.client;
     if (!client) return;
 
-    this.client?.updateSandbox()
+    this.client?.updateSandbox({ files: this.sandpack.files })
   }
 
   render() {

@@ -5,7 +5,6 @@ import { customElement } from "lit/decorators.js";
 class Layout extends LitElement {
   static styles = css`  
     #outer-container {
-      border: 1px solid red;
       container-type: inline-size; 
     }
     
