@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "publish": "np"
+    "release": "np"
   },
   "engines": {
     "node": ">=18"
