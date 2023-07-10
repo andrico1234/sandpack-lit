@@ -6,11 +6,19 @@ import {
 import { CSSResultGroup, LitElement, PropertyValueMap, css, html } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { consume } from "@lit-labs/context";
-import { Context, sandpackContext } from "../contexts/context";
+import { SandpackContext, sandpackContext } from "../contexts/context";
 
 @customElement("sandpack-preview")
 class Preview extends LitElement {
   static styles?: CSSResultGroup | undefined = css`
+    :host {
+      flex: 1;
+    }
+
+    #container {
+      height: 100%;
+    }
+
     iframe {
       border: 0;
       outline: 0;
@@ -23,7 +31,7 @@ class Preview extends LitElement {
   `;
 
   @consume<any>({ context: sandpackContext, subscribe: true })
-  sandpack!: Context;
+  sandpack!: SandpackContext;
 
   @property({ type: 'String' })
   template: "vite" = "vite";
@@ -40,9 +48,9 @@ class Preview extends LitElement {
     const options: ClientOptions = {};
     const sandpack = this.sandpack
 
-    console.log('sandy', sandpack)
+    const { files } = sandpack
 
-    loadSandpackClient(this.iframe, sandpack, options).then((client) => {
+    loadSandpackClient(this.iframe, { files }, options).then((client) => {
       this.client = client;
     });
   }
@@ -55,7 +63,7 @@ class Preview extends LitElement {
   }
 
   render() {
-    return html` <div>
+    return html` <div id="container">
       <iframe id="iframe"></iframe>
     </div>`;
   }

@@ -1,23 +1,36 @@
 import { provide } from "@lit-labs/context";
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
-import { sandpackContext, Context, getInitialState } from "./context";
+import { sandpackContext, SandpackContext, getFileState } from "./context";
 import exercises from "../exercises";
 
 const lesson = exercises[0];
-
 @customElement('sandpack-provider')
 class Provider extends LitElement {
+  onFileChange() {
+    console.log('updated file')
+  }
+
+  @state()
+  files = lesson.files
+
+  @state()
+  template: 'vite' = 'vite'
+
+  @state()
+  activeFile: string = Object.keys(lesson.files)[0]
+
   @provide({ context: sandpackContext })
   @state()
-  data: Context = getInitialState({
-    files: lesson.files,
-    template: 'vite',
+  context: SandpackContext = getFileState({
+    onFileChange: this.onFileChange,
+    files: this.files,
+    template: this.template,
+    activeFile: this.activeFile,
   })
 
-  render() {
-    console.log('ooo')
 
+  render() {
     return (
       html`
         <div>

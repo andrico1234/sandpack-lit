@@ -9,8 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@codemirror/lang-css": "^6.2.0",
+    "@codemirror/lang-html": "^6.4.5",
+    "@codemirror/lang-javascript": "^6.1.9",
     "@codesandbox/sandpack-client": "^2.6.9",
     "@lit-labs/context": "^0.3.3",
+    "codemirror": "^6.0.1",
     "lit": "^2.7.5"
   },
   "devDependencies": {

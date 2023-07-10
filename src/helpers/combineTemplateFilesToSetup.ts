@@ -9,7 +9,7 @@ const combineTemplateFilesToSetup = ({
   customSetup,
 }: {
   files?: SandpackFiles;
-  template?: "vite";
+  template: "vite";
   customSetup?: SandpackSetup;
 }): SandboxSetup => {
   if (!template) {
@@ -41,16 +41,6 @@ const combineTemplateFilesToSetup = ({
 
   return {
     files: convertedFilesToBundlerFiles({ ...baseTemplate.files, ...files }),
-    dependencies: {
-      ...baseTemplate.dependencies,
-      ...customSetup?.dependencies,
-    },
-    devDependencies: {
-      ...baseTemplate.devDependencies,
-      ...customSetup?.devDependencies,
-    },
-    main: baseTemplate.main,
-    environment: baseTemplate.environment,
   } as SandboxSetup;
 };
 
