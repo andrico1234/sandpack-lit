@@ -3,8 +3,6 @@ import { LitElement, html, css } from "lit";
 const validThemes = ["default", "red", "green", "blue", "gold"];
 
 class LitCheckbox extends LitElement {
-  theme = "default";
-
   static styles = css`
     :host {
       display: flex;
@@ -31,6 +29,12 @@ class LitCheckbox extends LitElement {
       type: String
     }
   };
+
+  constructor() {
+    super();
+
+    this.theme = "default";
+  }
 
   handleClick() {
     const indexOfCurrentPos = validThemes.indexOf(this.theme);

@@ -5,19 +5,27 @@ import { customElement } from "lit/decorators.js";
 class Layout extends LitElement {
   static styles = css`  
     #outer-container {
+      width: 100%;
+      max-width: 1000px;
+      margin-inline: auto;
       container-type: inline-size; 
+      display:  block;
+      border: 1px solid var(--sp-font-color);
+      background: white;
+      filter: var(--sp-wrapper-shadow);
     }
-    
+
     #inner-container {
       display: flex;
       flex-direction: column;
-      max-height: 400px;
+      height: 600px;
       overflow: hidden;
     }
-
+    
     @container (min-width: 600px) {
       #inner-container {
         flex-direction: row;
+        height: 400px;
       }
     }
   `
@@ -28,7 +36,7 @@ class Layout extends LitElement {
         <div id="inner-container">
           <slot></slot>
         </div>
-      </div>`
+    </div>`
     )
   }
 }

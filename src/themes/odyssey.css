@@ -1,0 +1,36 @@
+:root {
+  --sp-colors-surface-1: #1e1e1e;
+  --sp-colors-surface-2: #252525;
+  --sp-colors-surface-3: #2f2f2f;
+  --sp-colors-clickable: #999999;
+  --sp-colors-base: #808080;
+  --sp-colors-disabled: #4d4d4d;
+  --sp-colors-hover: #c5c5c5;
+  --sp-colors-accent: #1b00e5;
+  --sp-colors-error: #e1cff8;
+  --sp-colors-error-surface: #b08df8;
+
+  --sp-syntax-plain: #f0fdaf;
+  --sp-syntax-comment-color: #757575;
+  --sp-syntax-comment-fontStyle: italic;
+  --sp-syntax-keyword: #e5fd78;
+  --sp-syntax-tag: #f0fdaf;
+  --sp-syntax-punctuation: #ffffff;
+  --sp-syntax-definition: #eeeeee;
+  --sp-syntax-property: #90e86f;
+  --sp-syntax-static: #ffffff;
+  --sp-syntax-string: #dafecf;
+
+  --sp-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  sans-serif;
+  --sp-font-color: var(--sp-colors-surface-1);
+  --sp-tab-font-size: 12px;
+  --sp-tab-focus-outline-color: var(--sp-colors-accent);
+
+  --sp-font-mono: "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas,
+    "Liberation Mono", Monaco, "Lucida Console", monospace;
+  --sp-font-size: 13px;
+  --sp-font-line-height: 20px;
+
+  --sp-wrapper-shadow: drop-shadow(4px 4px 0px var(--sp-colors-surface-1));
+}

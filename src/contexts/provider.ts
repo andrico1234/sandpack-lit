@@ -18,13 +18,25 @@ class Provider extends LitElement {
     const files = this.files
     const activeFile = this.activeFile;
     files[activeFile].code = newFile
-
   }
 
   onActiveFileChange = (fileName: string) => {
     this.activeFile = fileName
-    const file = this.files[fileName].code;
-    this.#updateFile(file);
+
+    if (this.activeFile) {
+      const file = this.files[fileName].code;
+      this.#updateFile(file);
+      this.updateContext()
+    }
+  }
+
+  onFileClose = (fileName: string) => {
+    this.openFiles = this.openFiles.filter((file) => file !== fileName)
+
+    if (fileName === this.activeFile) {
+      this.activeFile = this.openFiles[0]
+    }
+
     this.updateContext()
   }
 
@@ -37,11 +49,16 @@ class Provider extends LitElement {
   @state()
   activeFile: string = Object.keys(lesson.files)[0]
 
+  @state()
+  openFiles: string[] = Object.keys(lesson.files)
+
   @provide({ context: sandpackContext })
   @state()
   context: SandpackContext = {
     onFileChange: this.onFileChange,
     onActiveFileChange: this.onActiveFileChange,
+    openFiles: this.openFiles,
+    onFileClose: this.onFileClose,
     files: this.files,
     activeFile: this.activeFile,
   }
@@ -50,6 +67,8 @@ class Provider extends LitElement {
     this.context = {
       onFileChange: this.onFileChange,
       onActiveFileChange: this.onActiveFileChange,
+      openFiles: this.openFiles,
+      onFileClose: this.onFileClose,
       files: this.files,
       activeFile: this.activeFile,
     }

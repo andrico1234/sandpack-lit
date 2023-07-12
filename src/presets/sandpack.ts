@@ -1,4 +1,4 @@
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import '../contexts/provider';
 import '../components/preview';
 import '../components/editor/editor';
@@ -7,10 +7,16 @@ import { LitElement, html } from 'lit';
 
 @customElement('sandpack-preset')
 class Sandpack extends LitElement {
+  @property()
+  options = {
+    closableTabs: false
+  }
+
+
   render() {
     return html`<sandpack-provider>
       <sandpack-layout>
-        <sandpack-editor></sandpack-editor>
+        <sandpack-editor ?closableTabs=${this.options.closableTabs}></sandpack-editor>
         <sandpack-preview></sandpack-preview>
       </sandpack-layout>
     </sandpack-provider>`
