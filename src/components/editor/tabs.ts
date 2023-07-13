@@ -15,7 +15,7 @@ class Tabs extends LitElement {
       list-style: none;
       padding: 0;
       margin: 0;
-      border-bottom: 1px solid var(--sp-colors-surface-1);
+      border-bottom: 1px solid var(--sp-border-color);
       display: flex;
       flex-wrap: wrap;
       padding: 0 8px;

@@ -1,7 +1,8 @@
 :root {
-  --sp-colors-surface-1: #1e1e1e;
+  --sp-colors-surface-1: white;
   --sp-colors-surface-2: #252525;
-  --sp-colors-surface-3: #2f2f2f;
+  --sp-colors-surface-3: #eaeaea;
+  --sp-colors-foreground: #1e1e1e;
   --sp-colors-clickable: #999999;
   --sp-colors-base: #808080;
   --sp-colors-disabled: #4d4d4d;
@@ -10,20 +11,18 @@
   --sp-colors-error: #e1cff8;
   --sp-colors-error-surface: #b08df8;
 
-  --sp-syntax-plain: #f0fdaf;
-  --sp-syntax-comment-color: #757575;
-  --sp-syntax-comment-fontStyle: italic;
-  --sp-syntax-keyword: #e5fd78;
-  --sp-syntax-tag: #f0fdaf;
-  --sp-syntax-punctuation: #ffffff;
-  --sp-syntax-definition: #eeeeee;
-  --sp-syntax-property: #90e86f;
-  --sp-syntax-static: #ffffff;
-  --sp-syntax-string: #dafecf;
+  --sp-colors-red: #e00034;
+  --sp-colors-purple: #cc0088;
+  --sp-colors-orange: #eb5a00;
+  --sp-colors-green: green;
 
-  --sp-font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-  sans-serif;
-  --sp-font-color: var(--sp-colors-surface-1);
+  --sp-space-unit: 8px;
+  --sp-space-1: calc(var(--sp-space-unit) * 0.5);
+  --sp-space-2: calc(var(--sp-space-unit) * 1);
+
+  --sp-font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, sans-serif;
+  --sp-font-color: var(--sp-colors-foreground);
   --sp-tab-font-size: 12px;
   --sp-tab-focus-outline-color: var(--sp-colors-accent);
 
@@ -32,5 +31,19 @@
   --sp-font-size: 13px;
   --sp-font-line-height: 20px;
 
-  --sp-wrapper-shadow: drop-shadow(4px 4px 0px var(--sp-colors-surface-1));
+  --sp-syntax-plain: var(--sp-font-color);
+  --sp-syntax-matching-bracket-color: color-mix(in srgb, var(--sp-colors-foreground), transparent 70%);
+  --sp-syntax-comment-color: var(--sp-colors-orange);
+  --sp-syntax-comment-fontStyle: italic;
+  --sp-syntax-keyword: var(--sp-colors-accent);
+  --sp-syntax-punctuation: var(--sp-font-color);
+  --sp-syntax-definition: var(--sp-colors-purple);
+  --sp-syntax-property: var(--sp-colors-purple);
+  --sp-syntax-attribute: var(--sp-colors-accent);
+  --sp-syntax-static: var(--sp-colors-red);
+  --sp-syntax-string: var(--sp-colors-green);
+
+
+  --sp-border-color: var(--sp-colors-foreground);
+  --sp-wrapper-shadow: drop-shadow(4px 4px 0px var(--sp-colors-foreground));
 }

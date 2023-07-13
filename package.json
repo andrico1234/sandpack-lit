@@ -16,7 +16,10 @@
     "@codemirror/lang-css": "^6.2.0",
     "@codemirror/lang-html": "^6.4.5",
     "@codemirror/lang-javascript": "^6.1.9",
+    "@codemirror/language": "^6.8.0",
+    "@codemirror/view": "^6.14.1",
     "@codesandbox/sandpack-client": "^2.6.9",
+    "@lezer/highlight": "^1.1.6",
     "@lit-labs/context": "^0.3.3",
     "codemirror": "^6.0.1",
     "lit": "^2.7.5"

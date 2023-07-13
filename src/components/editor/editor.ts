@@ -8,6 +8,10 @@ import './tabs'
 import { SandpackFile } from "../../types";
 import { css as langCss } from "@codemirror/lang-css";
 import { html as langHtml } from "@codemirror/lang-html";
+import { tags } from '@lezer/highlight';
+import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
+import { syntaxHighlightingStyles } from './syntaxHighlighting'
+import { highlightSpecialChars } from "@codemirror/view";
 
 const getCodefromFile = (file: SandpackFile | string) => {
   if (typeof file === 'string') {
@@ -26,39 +30,34 @@ const getFileLangFromExtension = (lang: string) => {
   return langHtml()
 }
 
-export const getEditorTheme = () =>
+const getEditorTheme = () =>
   EditorView.theme({
     "&": {
       backgroundColor: `var(--sp-colors-surface-1)`,
       color: `var(--sp-syntax-plain)`,
       height: "100%",
       fontSize: 'var(--sp-font-size)',
+      boxSizing: "border-box",
     },
 
     ".cm-matchingBracket, .cm-nonmatchingBracket, &.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket":
-      {
-        color: "inherit",
-        backgroundColor: `rgba(128,128,128,.25)`,
-        backgroundBlendMode: "difference",
-      },
-
-    "&.cm-editor.cm-focused": {
-      outline: "none",
+    {
+      color: "inherit",
+      backgroundColor: `var(--sp-syntax-matching-bracket-color)`,
+      backgroundBlendMode: "difference",
     },
 
     ".cm-activeLine": {
       backgroundColor: `var(--sp-colors-surface-3)`,
-      borderRadius: `var(--sp-border-radius)`,
     },
 
     ".cm-errorLine": {
       backgroundColor: `var(--sp-colors-error-surface)`,
-      borderRadius: `var(--sp-border-radius)`,
     },
 
     ".cm-content": {
       caretColor: `var(--sp-colors-accent)`,
-      padding: `0 var(--sp-space-4)`,
+      // padding: `0 var(--sp-space-4)`,
     },
 
     ".cm-scroller": {
@@ -69,12 +68,13 @@ export const getEditorTheme = () =>
     ".cm-gutters": {
       backgroundColor: `var(--sp-colors-surface-1)`,
       color: `var(--sp-colors-disabled)`,
-      border: "none",
-      paddingLeft: `var(--sp-space-1)`,
+      border: "0 1px 1px 0",
+      borderColor: 'var(--sp-border-color)',
+      paddingLeft: `var(--sp-space-2)`,
     },
 
     ".cm-gutter.cm-lineNumbers": {
-      fontSize: ".6em",
+      fontSize: "0.8rem",
     },
 
     ".cm-lineNumbers .cm-gutterElement": {
@@ -86,14 +86,76 @@ export const getEditorTheme = () =>
     ".cm-content.cm-readonly .cm-line": { paddingLeft: 0 },
   });
 
+const classNameToken = (className: string) => {
+  return `sp-syntax-${className}`
+}
+
+const getHighlightStyle = () => {
+  return HighlightStyle.define([
+    { tag: tags.link, textDecoration: "underline" },
+    { tag: tags.emphasis, fontStyle: "italic" },
+    { tag: tags.strong, fontWeight: "bold" },
+
+    {
+      tag: tags.keyword,
+      class: classNameToken("keyword"),
+    },
+    {
+      tag: [tags.atom, tags.number, tags.bool],
+      class: classNameToken("static"),
+    },
+    {
+      tag: tags.variableName,
+      class: classNameToken("plain"),
+    },
+    {
+      // Standard tags, e.g <h1 />
+      tag: tags.standard(tags.tagName),
+      class: classNameToken("tag"),
+    },
+    {
+      tag: [
+        // Highlight function call
+        tags.function(tags.variableName),
+
+        // Highlight function definition differently (eg: functional component def in React)
+        tags.definition(tags.function(tags.variableName)),
+
+        // "Custom tags", meaning React component
+        tags.tagName,
+      ],
+      class: classNameToken("definition"),
+    },
+    {
+      tag: tags.propertyName,
+      class: classNameToken("property"),
+    },
+    {
+      tag: tags.attributeName,
+      class: classNameToken("attribute"),
+    },
+    {
+      tag: [tags.literal, tags.inserted],
+      class: classNameToken("string"),
+    },
+    {
+      tag: tags.punctuation,
+      class: classNameToken("punctuation"),
+    },
+    {
+      tag: [tags.comment, tags.quote],
+      class: classNameToken("comment"),
+    },
+  ])
+}
 
 @customElement('sandpack-editor')
 class Editor extends LitElement {
-  static styles = css`
+  static styles = [syntaxHighlightingStyles, css`
     :host {
       flex: 1;
       overflow-y: scroll;
-      border-right: 1px solid var(--sp-colors-surface-1);
+      border-right: 1px solid var(--sp-border-color);
     }
 
     #editor-outer-container {
@@ -104,7 +166,7 @@ class Editor extends LitElement {
     #container {
       width: 100%;
     }
-    `
+    `]
 
   view!: EditorView
 
@@ -134,7 +196,7 @@ class Editor extends LitElement {
 
     this.view = new EditorView({
       doc: code,
-      extensions: [basicSetup, langExtension],
+      extensions: [basicSetup, langExtension, highlightSpecialChars(), getEditorTheme(), syntaxHighlighting(getHighlightStyle())],
       parent: this.container!,
       dispatch: (tr) => {
         this.view.update([tr])
