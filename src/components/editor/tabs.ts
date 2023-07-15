@@ -28,6 +28,7 @@ class Tabs extends LitElement {
 
     button {
       all: unset;
+      cursor: pointer;
       opacity: 0.6;
       padding: 0 8px;
       font-size: var(--sp-tab-font-size);

@@ -60,7 +60,7 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
   template: SandboxTemplateKey = "vite";
 
   @property({ type: String })
-  initMode!: InitMode
+  initMode: InitMode = 'lazy'
 
   @query("#iframe")
   iframe!: HTMLIFrameElement;
@@ -100,7 +100,6 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
 
         client.listen((e) => {
           if (e.type === 'done') {
-            console.log(e)
             if (e.compilatonError) {
               this.status = 'error'
             }

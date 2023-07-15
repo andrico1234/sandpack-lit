@@ -1,12 +1,9 @@
 import { provide } from "@lit-labs/context";
-import { LitElement, html } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { LitElement, PropertyValueMap, html } from "lit";
+import { customElement, property, state } from "lit/decorators.js";
 import { sandpackContext, SandpackContext } from "./context";
-import exercises from "../exercises";
-import combineTemplateFilesToSetup from "../helpers/combineTemplateFilesToSetup";
 import setupStartingFiles from "../helpers/setupStartingFiles";
-
-const lesson = exercises[0];
+import { SandboxTemplateKey, SandpackFiles, SandpackSetup } from "../types";
 
 @customElement('sandpack-provider')
 class Provider extends LitElement {
@@ -16,7 +13,7 @@ class Provider extends LitElement {
   }
 
   #updateFile = (newFile: string) => {
-    const files = this.files
+    const files = this._files
     const activeFile = this.activeFile;
     files[activeFile].code = newFile
   }
@@ -25,7 +22,7 @@ class Provider extends LitElement {
     this.activeFile = fileName
 
     if (this.activeFile) {
-      const file = this.files[fileName].code;
+      const file = this._files[fileName].code;
       this.#updateFile(file);
       this.updateContext()
     }
@@ -41,18 +38,42 @@ class Provider extends LitElement {
     this.updateContext()
   }
 
+  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>) {
+    if (_changedProperties.has('files')) {
+      this._files = setupStartingFiles({
+        template: this.template,
+        files: this.files,
+        customSetup: this.customSetup
+      }).files
+
+      this.activeFile = Object.keys(this.files)[0]
+      this.openFiles = Object.keys(this.files)
+
+      this.updateContext()
+    }
+  }
+
+  @property({ type: String })
+  template: SandboxTemplateKey = 'vite'
+
+  @property({ type: Object })
+  files: SandpackFiles = {}
+
+  @property({ type: Object })
+  customSetup: SandpackSetup = {}
+
   @state()
-  files = setupStartingFiles({
-    template: 'vite',
-    files: lesson.files,
-    customSetup: lesson.customSetup
+  _files = setupStartingFiles({
+    template: this.template,
+    files: this.files,
+    customSetup: this.customSetup
   }).files
 
   @state()
-  activeFile: string = Object.keys(lesson.files)[0]
+  activeFile: string = Object.keys(this.files)[0]
 
   @state()
-  openFiles: string[] = Object.keys(lesson.files)
+  openFiles: string[] = Object.keys(this.files)
 
   @provide({ context: sandpackContext })
   @state()
@@ -61,7 +82,7 @@ class Provider extends LitElement {
     onActiveFileChange: this.onActiveFileChange,
     openFiles: this.openFiles,
     onFileClose: this.onFileClose,
-    files: this.files,
+    files: this._files,
     activeFile: this.activeFile,
   }
 
@@ -71,7 +92,7 @@ class Provider extends LitElement {
       onActiveFileChange: this.onActiveFileChange,
       openFiles: this.openFiles,
       onFileClose: this.onFileClose,
-      files: this.files,
+      files: this._files,
       activeFile: this.activeFile,
     }
 

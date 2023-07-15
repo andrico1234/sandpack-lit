@@ -14,8 +14,11 @@ export type SandboxTemplateKey = "vite";
 export type InitMode = 'immediate' | 'lazy'
 
 export interface PresetOptions {
+  files: SandpackFiles;
+  customSetup?: SandpackSetup;
   closableTabs?: false;
   initMode?: InitMode;
+  template: SandboxTemplateKey;
 }
 
 export interface SandpackSetup {
@@ -30,5 +33,5 @@ export interface SandpackFile {
   readOnly?: boolean;
 }
 
-export type SandpackFiles = Record<SandboxTemplateKey, string | SandpackFile>;
+export type SandpackFiles = Record<string, string | SandpackFile>;
 
