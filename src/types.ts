@@ -9,6 +9,15 @@ export interface SandboxTemplate {
 
 type SandboxEnvironment = "node";
 
+export type SandboxTemplateKey = "vite";
+
+export type InitMode = 'immediate' | 'lazy'
+
+export interface PresetOptions {
+  closableTabs?: false;
+  initMode?: InitMode;
+}
+
 export interface SandpackSetup {
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
@@ -21,4 +30,5 @@ export interface SandpackFile {
   readOnly?: boolean;
 }
 
-export type SandpackFiles = Record<string, string | SandpackFile>;
+export type SandpackFiles = Record<SandboxTemplateKey, string | SandpackFile>;
+

@@ -9,10 +9,10 @@ The aim is to build a reduced-scoped api of the official sandpack-react repo.
 - [x] Create a custom element that renders the sandpack preview
 - [x] Run a Vite project for creating and rendering a custom element
 - [x] Create a context that passes the files through to the children
-- [ ] Create a code editor by wrapping around CodeMirror
-- [ ] Create methods to update files
-- [ ] Create a file navigator that behaves similar to sandpack react
-- [ ] Improve the UI so that it looks similar to Codesandbox
+- [x] Create a code editor by wrapping around CodeMirror
+- [x] Create methods to update files
+- [x] Create a file navigator that behaves similar to sandpack react
+- [x] Improve the UI so that it looks similar to Codesandbox
 
 ### Components
 
@@ -36,8 +36,3 @@ options:
   - syntax
 
 #### SandpackProvider
-
-### Issues to resolve
-
-- Dependencies in customSetup don't work. I need to add them explicitly to the package.json
-- Importing resources directly in the index.html doesn't seem to work. Instead I need to import everything from the index.js. Likely to do with "entry"

@@ -4,6 +4,7 @@ import { customElement, state } from "lit/decorators.js";
 import { sandpackContext, SandpackContext } from "./context";
 import exercises from "../exercises";
 import combineTemplateFilesToSetup from "../helpers/combineTemplateFilesToSetup";
+import setupStartingFiles from "../helpers/setupStartingFiles";
 
 const lesson = exercises[0];
 
@@ -41,9 +42,10 @@ class Provider extends LitElement {
   }
 
   @state()
-  files = combineTemplateFilesToSetup({
+  files = setupStartingFiles({
     template: 'vite',
     files: lesson.files,
+    customSetup: lesson.customSetup
   }).files
 
   @state()

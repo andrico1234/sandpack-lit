@@ -1,6 +1,3 @@
-import "./base.css";
-import './my-component.js';
-
 const body = document.querySelector("body");
 
 window.addEventListener("theme-change", (e) => {

@@ -8,6 +8,8 @@ import { customElement, property, query, state } from "lit/decorators.js";
 import { consume } from "@lit-labs/context";
 import { SandpackContext, sandpackContext } from "../contexts/context";
 import { when } from "lit/directives/when.js";
+import { InitMode, SandboxTemplateKey } from "../types";
+import { ElementVisible } from "../mixins/ElementVisibleMixin";
 
 const options: ClientOptions = {
   showOpenInCodeSandbox: false,
@@ -16,7 +18,7 @@ const options: ClientOptions = {
 };
 
 @customElement("sandpack-preview")
-class Preview extends LitElement {
+class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
   static styles?: CSSResultGroup | undefined = css`
     :host {
       flex: 1;
@@ -54,8 +56,11 @@ class Preview extends LitElement {
   @consume({ context: sandpackContext, subscribe: true })
   sandpack!: SandpackContext;
 
-  @property({ type: 'String' })
-  template: "vite" = "vite";
+  @property({ type: String })
+  template: SandboxTemplateKey = "vite";
+
+  @property({ type: String })
+  initMode!: InitMode
 
   @query("#iframe")
   iframe!: HTMLIFrameElement;
@@ -81,6 +86,10 @@ class Preview extends LitElement {
   updateClient() {
     if (!this.client) {
 
+      const shouldLoad = this.initMode === 'immediate' || this.isVisible
+
+      if (!shouldLoad) return
+
       const sandpack = this.sandpack
 
       const { files } = sandpack
@@ -89,7 +98,15 @@ class Preview extends LitElement {
         this.status = client.status
         this.client = client;
 
-        client.listen(() => {
+        client.listen((e) => {
+          if (e.type === 'done') {
+            console.log(e)
+            if (e.compilatonError) {
+              this.status = 'error'
+            }
+            return
+          }
+
           if (this.status === 'done') return
           this.status = client.status
         })
