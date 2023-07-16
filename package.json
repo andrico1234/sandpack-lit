@@ -22,11 +22,11 @@
     ".": {
       "types": "./"
     },
-    "./dist/custom-elements.json": "./dist/custom-elements.json",
     "./dist/themes/*": "./dist/themes/*",
     "./dist/components/*": "./dist/contexts/*",
     "./dist/contexts/*": "./dist/components/*",
     "./dist/mixins/*": "./dist/utilities/*",
+    "./dist/presets/*": "./dist/presets/*",
     "./dist/templates/*": "./dist/templates/*"
   },
   "engines": {
