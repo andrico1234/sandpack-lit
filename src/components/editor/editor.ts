@@ -223,9 +223,10 @@ class Editor extends LitElement {
   #updateActivePage() {
     const view = this.view;
 
-    if (!view) return;
+    if (view) {
+      view.destroy()
+    };
 
-    view.destroy()
     this.initialiseEditor()
   }
 

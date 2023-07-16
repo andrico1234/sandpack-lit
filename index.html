@@ -21,5 +21,16 @@
   </head>
   <body>
     <sandpack-preset></sandpack-preset>
+
+    <script type="module">
+      import example from "/examples/basic-example";
+
+      const sandpack = document.querySelector("sandpack-preset");
+
+      sandpack.options = {
+        files: example.files,
+        customSetup: example.customSetup,
+      };
+    </script>
   </body>
 </html>

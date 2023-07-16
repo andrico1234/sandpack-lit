@@ -1,13 +1,13 @@
 import fs from "fs";
 import prettier from 'prettier'
 
-const dirs = fs.readdirSync('./src/exercises', { withFileTypes: true }).filter(x => x.isDirectory()).map(({ name }) => name)
+const dirs = fs.readdirSync('./examples', { withFileTypes: true }).filter(x => x.isDirectory()).map(({ name }) => name)
 
 dirs.forEach((dir) => {
-  const exerciseDir = `./src/exercises/${dir}/files`
-  const files = fs.readdirSync(exerciseDir, { withFileTypes: true }).filter(x => x.isFile()).map(({ name }) => name);
+  const exampleDir = `./examples/${dir}/files`
+  const files = fs.readdirSync(exampleDir, { withFileTypes: true }).filter(x => x.isFile()).map(({ name }) => name);
   const filesContents = files.reduce((acc, curr) => {
-    const contents = fs.readFileSync(`${exerciseDir}/${curr}`, 'utf-8')
+    const contents = fs.readFileSync(`${exampleDir}/${curr}`, 'utf-8')
 
     return {
       ...acc,
@@ -15,7 +15,7 @@ dirs.forEach((dir) => {
     }
   }, {})
 
-  const index = `const exercise = {
+  const index = `const examples = {
     files: ${JSON.stringify(filesContents)},
     customSetup: {
       dependencies: {
@@ -24,7 +24,7 @@ dirs.forEach((dir) => {
     },
   };
   
-  export default exercise;`
+  export default examples;`
 
-  fs.writeFileSync(`./src/exercises/${dir}/index.js`, index)
+  fs.writeFileSync(`./examples/${dir}/index.js`, index)
 })

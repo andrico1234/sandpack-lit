@@ -1,13 +1,25 @@
 {
   "name": "sandpack-lit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && cp -R ./src/themes ./dist/themes",
     "test": "vitest",
     "preview": "vite preview",
-    "release": "np"
+    "release": "np --contents=dist"
+  },
+  "exports": {
+    ".": {
+      "types": "./"
+    },
+    "./dist/custom-elements.json": "./dist/custom-elements.json",
+    "./dist/themes/*": "./dist/themes/*",
+    "./dist/components/*": "./dist/contexts/*",
+    "./dist/contexts/*": "./dist/components/*",
+    "./dist/mixins/*": "./dist/utilities/*",
+    "./dist/templates/*": "./dist/templates/*"
+    
   },
   "engines": {
     "node": ">=18"

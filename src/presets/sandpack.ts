@@ -5,25 +5,31 @@ import '../components/editor/editor';
 import '../components/layout';
 import { LitElement, html } from 'lit';
 import { PresetOptions } from '../types';
-import exercises from '../exercises';
 
 @customElement('sandpack-preset')
 class Sandpack extends LitElement {
-  @property()
-  options: PresetOptions = {
-    files: exercises[0].files,
-    customSetup: exercises[0].customSetup,
+  _defaultOptions: PresetOptions = {
     template: 'vite',
     closableTabs: false,
-    initMode: 'lazy'
+    initMode: 'lazy',
+    files: {}
+
   }
+
+  @property()
+  options: Partial<PresetOptions> = {}
 
 
   render() {
-    return html`<sandpack-provider .files=${this.options.files} .customSetup=${this.options.customSetup} template=${this.options.template}>
+    const options = {
+      ...this._defaultOptions,
+      ...this.options
+    }
+
+    return html`<sandpack-provider .files=${options.files} .customSetup=${options.customSetup} template=${options.template}>
       <sandpack-layout>
-        <sandpack-editor ?closableTabs=${this.options.closableTabs}></sandpack-editor>
-        <sandpack-preview initMode=${this.options.initMode}></sandpack-preview>
+        <sandpack-editor ?closableTabs=${options.closableTabs}></sandpack-editor>
+        <sandpack-preview initMode=${options.initMode}></sandpack-preview>
       </sandpack-layout>
     </sandpack-provider>`
   }
