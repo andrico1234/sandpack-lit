@@ -11,9 +11,11 @@
     "release": "npm run build && np"
   },
   "np": {
-    "contents": "dist",
     "yarn": false
   },
+  "files": [
+    "./dist"
+  ],
   "exports": {
     ".": {
       "types": "./"
