@@ -7,7 +7,11 @@
     "build": "tsc && cp -R ./src/themes ./dist/themes",
     "test": "vitest",
     "preview": "vite preview",
-    "release": "np --contents=dist"
+    "release": "npm run build && np"
+  },
+  "np": {
+    "contents": "dist",
+    "yarn": false
   },
   "exports": {
     ".": {
@@ -19,7 +23,6 @@
     "./dist/contexts/*": "./dist/components/*",
     "./dist/mixins/*": "./dist/utilities/*",
     "./dist/templates/*": "./dist/templates/*"
-    
   },
   "engines": {
     "node": ">=18"
