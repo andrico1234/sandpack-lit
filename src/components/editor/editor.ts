@@ -38,6 +38,7 @@ const getEditorTheme = () =>
       height: "100%",
       fontSize: 'var(--sp-font-size)',
       boxSizing: "border-box",
+      textAlign: 'left'
     },
 
     ".cm-matchingBracket, .cm-nonmatchingBracket, &.cm-focused .cm-matchingBracket, &.cm-focused .cm-nonmatchingBracket":
