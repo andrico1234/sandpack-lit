@@ -6,10 +6,10 @@ import {
 import { CSSResultGroup, LitElement, css, html } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { consume } from "@lit-labs/context";
-import { SandpackContext, sandpackContext } from "../contexts/context";
+import { SandpackContext, sandpackContext } from "../contexts/context.js";
 import { when } from "lit/directives/when.js";
-import { InitMode, SandboxTemplateKey } from "../types";
-import { ElementVisible } from "../mixins/ElementVisibleMixin";
+import { InitMode, SandboxTemplateKey } from "../types.js";
+import { ElementVisible } from "../mixins/ElementVisibleMixin.js";
 
 const options: ClientOptions = {
   showOpenInCodeSandbox: false,

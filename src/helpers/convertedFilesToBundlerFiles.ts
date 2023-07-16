@@ -2,7 +2,7 @@ import {
   SandpackBundlerFile,
   SandpackBundlerFiles,
 } from "@codesandbox/sandpack-client";
-import { SandpackFiles } from "../types";
+import { SandpackFiles } from "../types.js";
 
 /**
  * Transform an regular object, which contain files to

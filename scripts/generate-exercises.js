@@ -1,5 +1,4 @@
 import fs from "fs";
-import prettier from 'prettier'
 
 const dirs = fs.readdirSync('./examples', { withFileTypes: true }).filter(x => x.isDirectory()).map(({ name }) => name)
 

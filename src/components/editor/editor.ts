@@ -1,16 +1,16 @@
 import { javascript } from "@codemirror/lang-javascript";
 import { consume } from "@lit-labs/context";
 import { EditorView, basicSetup } from "codemirror";
-import { LitElement, PropertyValueMap, css, html } from "lit";
+import { LitElement, css, html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { SandpackContext, sandpackContext } from "../../contexts/context";
-import './tabs'
-import { SandpackFile } from "../../types";
+import { SandpackContext, sandpackContext } from "../../contexts/context.js";
+import './tabs.js'
+import { SandpackFile } from "../../types.js";
 import { css as langCss } from "@codemirror/lang-css";
 import { html as langHtml } from "@codemirror/lang-html";
 import { tags } from '@lezer/highlight';
 import { HighlightStyle, syntaxHighlighting } from "@codemirror/language";
-import { syntaxHighlightingStyles } from './syntaxHighlighting'
+import { syntaxHighlightingStyles } from './syntaxHighlighting.js'
 import { highlightSpecialChars } from "@codemirror/view";
 
 const getCodefromFile = (file: SandpackFile | string) => {
@@ -210,7 +210,7 @@ class Editor extends LitElement {
     })
   }
 
-  protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+  protected firstUpdated(): void {
     this.initialiseEditor()
   }
 
@@ -225,7 +225,7 @@ class Editor extends LitElement {
 
     if (view) {
       view.destroy()
-    };
+    }
 
     this.initialiseEditor()
   }

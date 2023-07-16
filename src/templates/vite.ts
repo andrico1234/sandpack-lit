@@ -1,4 +1,4 @@
-import { commonFiles } from "./common";
+import { commonFiles } from "./common.js";
 
 export const VITE_TEMPLATE = {
   files: {

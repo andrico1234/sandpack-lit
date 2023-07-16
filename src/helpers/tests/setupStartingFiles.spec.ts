@@ -1,4 +1,4 @@
-import setupStartingFiles, { Args } from "../setupStartingFiles"
+import setupStartingFiles, { Args } from "../setupStartingFiles.js"
 
 const initialSetup: Args = {
   template: 'vite',

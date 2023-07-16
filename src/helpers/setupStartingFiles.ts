@@ -1,6 +1,6 @@
-import { SandpackFiles, SandpackSetup } from "../types";
-import combineTemplateFilesToSetup from "./combineTemplateFilesToSetup";
-import updatePackageJsonWithCustomDeps from "./updatePackageJsonWithCustomDeps";
+import { SandpackFiles, SandpackSetup } from "../types.js";
+import combineTemplateFilesToSetup from "./combineTemplateFilesToSetup.js";
+import updatePackageJsonWithCustomDeps from "./updatePackageJsonWithCustomDeps.js";
 
 export interface Args {
   files?: SandpackFiles;

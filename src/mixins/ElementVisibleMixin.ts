@@ -53,7 +53,7 @@ export const ElementVisible = <T extends Constructor<LitElement>>(superClass: T,
         }
       }
     }
-  };
+  }
 
 
   return ElementVisibleMixin as Constructor<ElementVisibleInterface> & T;

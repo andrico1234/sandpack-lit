@@ -1,9 +1,9 @@
 import { provide } from "@lit-labs/context";
 import { LitElement, PropertyValueMap, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { sandpackContext, SandpackContext } from "./context";
-import setupStartingFiles from "../helpers/setupStartingFiles";
-import { SandboxTemplateKey, SandpackFiles, SandpackSetup } from "../types";
+import { sandpackContext, SandpackContext } from "./context.js";
+import setupStartingFiles from "../helpers/setupStartingFiles.js";
+import { SandboxTemplateKey, SandpackFiles, SandpackSetup } from "../types.js";
 
 @customElement('sandpack-provider')
 class Provider extends LitElement {

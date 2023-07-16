@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "npm run clean && tsc && cp -R ./src/themes ./dist/themes",
     "clean": "rm -Rf dist",
-    "test": "vitest run",
+    "lint": "eslint ./src",
+    "test": "npm run lint && vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
     "release": "npm run build && np"
@@ -44,6 +45,11 @@
     "lit": "^2.7.5"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-import": "^2.27.5",
     "np": "^8.0.4",
     "prettier": "^3.0.0",
     "typescript": "^5.0.2",

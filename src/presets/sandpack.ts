@@ -4,7 +4,7 @@ import '../components/preview';
 import '../components/editor/editor';
 import '../components/layout';
 import { LitElement, html } from 'lit';
-import { PresetOptions } from '../types';
+import { PresetOptions } from '../types.js';
 
 @customElement('sandpack-preset')
 class Sandpack extends LitElement {
