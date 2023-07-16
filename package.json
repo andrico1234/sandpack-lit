@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && cp -R ./src/themes ./dist/themes",
+    "build": "npm run clean && tsc && cp -R ./src/themes ./dist/themes",
+    "clean": "rm -Rf dist",
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
