@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && cp -R ./src/themes ./dist/themes",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "preview": "vite preview",
     "release": "npm run build && np"
   },
