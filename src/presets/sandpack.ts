@@ -1,8 +1,8 @@
 import { customElement, property } from 'lit/decorators.js';
-import '../contexts/provider';
-import '../components/preview';
-import '../components/editor/editor';
-import '../components/layout';
+import '../contexts/provider.js';
+import '../components/preview.js';
+import '../components/editor/editor.js';
+import '../components/layout.js';
 import { LitElement, html } from 'lit';
 import { PresetOptions } from '../types.js';
 
