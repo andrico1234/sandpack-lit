@@ -99,6 +99,8 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
         this.client = client;
 
         client.listen((e) => {
+          if (this.status === 'done') return
+
           if (e.type === 'done') {
             if (e.compilatonError) {
               this.status = 'error'
@@ -106,7 +108,6 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
             return
           }
 
-          if (this.status === 'done') return
           this.status = client.status
         })
       });
