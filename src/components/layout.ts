@@ -6,7 +6,6 @@ class Layout extends LitElement {
   static styles = css`  
     #outer-container {
       width: 100%;
-      max-width: 1000px;
       margin-inline: auto;
       container-type: inline-size; 
       display:  block;
@@ -18,14 +17,14 @@ class Layout extends LitElement {
     #inner-container {
       display: flex;
       flex-direction: column;
-      height: 600px;
+      height: var(--sp-editor-height-sm-container, 600px);
       overflow: hidden;
     }
     
     @container (min-width: 600px) {
       #inner-container {
         flex-direction: row;
-        height: 400px;
+        height: var(--sp-editor-height-lg-container, 400px);
       }
     }
   `
