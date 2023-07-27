@@ -1,38 +1,72 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="/base.css" />
-    <link rel="stylesheet" href="/src/themes/odyssey.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sandpack Test</title>
-    <script type="module" src="/src/presets/sandpack.ts"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div style="width: min(100%, 1200px); margin-inline: auto;">
-      <sandpack-preset></sandpack-preset>
-    </div>
 
-    <script type="module">
-      import example from "/examples/basic-example";
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="stylesheet" href="/base.css" />
+  <link rel="stylesheet" href="/src/themes/odyssey.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandpack Test</title>
+  <script type="module" src="/src/presets/sandpack.ts"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
 
-      const sandpack = document.querySelector("sandpack-preset");
+<body>
+  <div>
+    <h2>Template</h2>
+    <button class="vite">Vite</button>
+    <button class="node">Node</button>
+  </div>
+  <div id="sandpack-wrapper" style="width: min(100%, 1200px); margin-inline: auto;">
+    <sandpack-preset></sandpack-preset>
+  </div>
 
-      sandpack.options = {
+  <script type="module">
+    import example from "/examples/basic-example";
+    import nodeExample from "/examples/node-example";
+
+    function reinit(options) {
+      const oldSandpack = document.querySelector("sandpack-preset");
+      if (oldSandpack) {
+        oldSandpack.remove()
+      }
+
+
+      const sandpackWrapper = document.querySelector("#sandpack-wrapper");
+      const newSandpack = document.createElement("sandpack-preset");
+      sandpackWrapper.appendChild(newSandpack);
+      newSandpack.options = options
+    }
+
+    function initVite() {
+      const options = {
         files: example.files,
         customSetup: example.customSetup,
-      };
-    </script>
-  </body>
+      }
+      reinit(options)
+    };
+
+    const viteButtonEl = document.querySelector(".vite");
+    viteButtonEl.addEventListener("click", initVite);
+
+    function initNode() {
+      const options = {
+        files: nodeExample.files,
+        template: 'node',
+        customSetup: nodeExample.customSetup,
+      }
+
+      reinit(options)
+    }
+    const nodeButtonEl = document.querySelector(".node");
+    nodeButtonEl.addEventListener("click", initNode);
+
+    initVite()
+  </script>
+</body>
+
 </html>

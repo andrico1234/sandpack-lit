@@ -9,7 +9,7 @@ export interface SandboxTemplate {
 
 type SandboxEnvironment = "node";
 
-export type SandboxTemplateKey = "vite";
+export type SandboxTemplateKey = "vite" | "node";
 
 export type InitMode = 'immediate' | 'lazy'
 

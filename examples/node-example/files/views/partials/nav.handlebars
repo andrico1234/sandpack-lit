@@ -1,0 +1,19 @@
+<nav class="bg-dark">
+  <ul class="flex-row padding-h-4 text-center">
+    <li class="{{#if (isEq 'home' route)}}bg-gray-1{{else}}bg-gray-2{{/if}} padding-v-2 padding-h-4 vertical-center-align">
+      <a href="/">
+        <p>Home</p>
+      </a>
+    </li>
+    <li class="{{#if (isEq 'top-40' route)}}bg-gray-1{{else}}bg-gray-2{{/if}} padding-v-2 padding-h-4 vertical-center-align">
+      <a href="/top-40">
+        <p>Top 40</p>
+      </a>
+    </li>
+    <li class="{{#if (isEq 'albums' route)}}bg-gray-1{{else}}bg-gray-2{{/if}} padding-v-2 padding-h-4 vertical-center-align">
+      <a href="/albums">
+        <p>Albums</p>
+      </a>
+    </li>
+  </ul>
+</nav>

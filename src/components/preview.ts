@@ -14,7 +14,7 @@ import { ElementVisible } from "../mixins/ElementVisibleMixin.js";
 const options: ClientOptions = {
   showOpenInCodeSandbox: false,
   showLoadingScreen: true,
-  startRoute: '/index.html',
+  startRoute: '/',
 };
 
 @customElement("sandpack-preview")

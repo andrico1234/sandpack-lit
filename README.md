@@ -53,7 +53,7 @@ Set up your HTML file:
 
 options:
 
-- template: string
+- template: node | vite
 - files
   - code: string
 - customSetup
@@ -64,4 +64,4 @@ options:
 
 ## Notes
 
-- Only Vite is suported
+- Only Vite and Node are suported
