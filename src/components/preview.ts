@@ -83,6 +83,11 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
     this.updateClient()
   }
 
+  refresh() {
+    // This is a hack because once Vite disconnects due to an error, I can't seem to get it to reconnect
+    this.client.dispatch({ type: 'refresh' })
+  }
+
   updateClient() {
     if (!this.client) {
 
@@ -115,6 +120,7 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
     }
 
     this.client.updateSandbox({ files: this.sandpack.files, template: 'node' })
+    this.refresh()
   }
 
   render() {
