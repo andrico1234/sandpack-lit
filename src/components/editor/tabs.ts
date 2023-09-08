@@ -9,6 +9,11 @@ class Tabs extends LitElement {
   static styles = css`
     :host {
       box-sizing: border-box;
+      position: sticky;
+      background: var(--sp-colors-surface-1);
+      z-index: 1;
+      display: block;
+      top: 0;
     }
 
     ul {

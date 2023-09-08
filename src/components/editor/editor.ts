@@ -235,7 +235,7 @@ class Editor extends LitElement {
     return html`<sandpack-tabs ?closableTabs=${this.closableTabs}></sandpack-tabs>
       <div id="editor-outer-container">
         <div id="container"></div>
-      </div>`
+  </div>`
   }
 }
 
