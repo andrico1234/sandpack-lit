@@ -23,8 +23,11 @@
   --sp-font-body: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, sans-serif;
   --sp-font-color: var(--sp-colors-foreground);
+  
   --sp-tab-font-size: 12px;
   --sp-tab-focus-outline-color: var(--sp-colors-accent);
+  --sp-tab-font-color: var(--sp-font-color);
+  --sp-tab-font-opacity-inactive: 0.6;
 
   --sp-font-mono: "Fira Mono", "DejaVu Sans Mono", Menlo, Consolas,
     "Liberation Mono", Monaco, "Lucida Console", monospace;

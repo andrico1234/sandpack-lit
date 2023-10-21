@@ -13,7 +13,6 @@ class Sandpack extends LitElement {
     closableTabs: false,
     initMode: 'lazy',
     files: {}
-
   }
 
   @property()

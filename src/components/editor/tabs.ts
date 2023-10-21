@@ -34,14 +34,15 @@ class Tabs extends LitElement {
     button {
       all: unset;
       cursor: pointer;
-      opacity: 0.6;
+      opacity: var(--sp-tab-font-opacity-inactive, 0.6);
       padding: 0 8px;
+      color: var(--sp-tab-font-color, black);
       font-size: var(--sp-tab-font-size);
       font-family: var(--sp-font-body);
     }
 
     button:focus {
-      outline: 2px solid var(--sp-tab-focus-outline-color );
+      outline: 2px solid var(--sp-tab-focus-outline-color);
       outline-offset: -4px;
     }
 
