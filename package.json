@@ -8,6 +8,7 @@
     "clean": "rm -Rf dist",
     "lint": "eslint ./src",
     "test": "npm run lint && vitest run",
+    "generate-exercises": "node ./scripts/generate-exercises",
     "test:watch": "vitest",
     "preview": "vite preview",
     "release": "npm run build && np"

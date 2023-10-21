@@ -6,9 +6,13 @@ class LitCheckbox extends LitElement {
   static styles = css`
     :host {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
       gap: 8px;
+    }
+
+    h1 {
+      text-transform: capitalize;
     }
 
     button[checked] {
@@ -56,10 +60,12 @@ class LitCheckbox extends LitElement {
   }
 
   render() {
-    return html` <button @click=${this.handleClick} id="indicator"></button>
-      <label>
-        <p id="label">${this.theme}</p>
-      </label>`
+    return html` 
+      <label for="indicator">
+        <h1 id="label">Theme: ${this.theme}</h1>
+      </label>
+      <button @click=${this.handleClick} id="indicator"></button>
+      `
   }
 }
 

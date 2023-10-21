@@ -1,5 +1,13 @@
 :root {
-  --background: gold;
+  --background: #f7df1e;
+}
+
+body {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-transform: capitalize;
 }
 
 body[data-theme="default"] {
@@ -7,17 +15,17 @@ body[data-theme="default"] {
 }
 
 body[data-theme="red"] {
-  background: red;
+  background: #c30;
 }
 
 body[data-theme="green"] {
-  background: green;
+  background: #42b883;
 }
 
 body[data-theme="blue"] {
-  background: blue;
+  background: rgb(8, 126, 164);
 }
 
 body[data-theme="gold"] {
-  background: goldenrod;
+  background: #f7df1e;
 }
