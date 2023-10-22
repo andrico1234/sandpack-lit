@@ -42,6 +42,7 @@
     "@codesandbox/sandpack-client": "^2.6.9",
     "@lezer/highlight": "^1.1.6",
     "@lit-labs/context": "^0.3.3",
+    "@lit/react": "^1.0.0",
     "codemirror": "^6.0.1",
     "lit": "^2.7.5"
   },
