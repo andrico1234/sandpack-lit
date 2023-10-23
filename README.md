@@ -1,5 +1,7 @@
 # Sandpack Lit
 
+If you'd like to learn more, please check out the [announcement article](https://component-odyssey.com/articles/00-sandpack-lit-universal).
+
 A lit implementation of "Sandpack React".
 
 The aim is to build a reduced-scoped api of the official sandpack-react repo.
