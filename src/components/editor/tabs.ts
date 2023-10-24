@@ -1,6 +1,7 @@
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { SandpackContext, sandpackContext } from "../../contexts/context.js";
+import { sandpackContext } from "../../contexts/context.js";
+import type { SandpackContext } from "../../contexts/context.js";
 import { consume } from "@lit-labs/context";
 import { when } from "lit/directives/when.js";
 

@@ -1,5 +1,5 @@
 import { createContext } from "@lit-labs/context";
-import { SandpackBundlerFiles } from "@codesandbox/sandpack-client";
+import type { SandpackBundlerFiles } from "@codesandbox/sandpack-client";
 
 export type SandpackContext = {
   files: SandpackBundlerFiles,

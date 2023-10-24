@@ -1,4 +1,4 @@
-import { SandboxTemplateKey, SandpackFiles, SandpackSetup } from "../types.js";
+import type { SandboxTemplateKey, SandpackFiles, SandpackSetup } from "../types.js";
 import combineTemplateFilesToSetup from "./combineTemplateFilesToSetup.js";
 import updatePackageJsonWithCustomDeps from "./updatePackageJsonWithCustomDeps.js";
 

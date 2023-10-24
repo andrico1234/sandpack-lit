@@ -10,7 +10,7 @@
     "test": "npm run lint && vitest run",
     "generate-exercises": "node ./scripts/generate-exercises",
     "test:watch": "vitest",
-    "preview": "vite preview",
+    "preview": "vite build && vite preview",
     "release": "npm run build && np"
   },
   "np": {

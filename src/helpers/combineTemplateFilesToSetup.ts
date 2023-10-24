@@ -1,8 +1,8 @@
-import { SandboxSetup } from "@codesandbox/sandpack-client";
+import type { SandboxSetup } from "@codesandbox/sandpack-client";
 import SANDBOX_TEMPLATES from "../templates/index.js";
-import { SandboxTemplate } from "../types.js";
+import type { SandboxTemplate } from "../types.js";
 import convertedFilesToBundlerFiles from "./convertedFilesToBundlerFiles.js";
-import { Args } from "./setupStartingFiles.js";
+import type { Args } from "./setupStartingFiles.js";
 
 const combineTemplateFilesToSetup = ({
   files,

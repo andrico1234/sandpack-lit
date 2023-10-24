@@ -3,9 +3,10 @@ import { consume } from "@lit-labs/context";
 import { EditorView, basicSetup } from "codemirror";
 import { LitElement, css, html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { SandpackContext, sandpackContext } from "../../contexts/context.js";
+import { sandpackContext } from "../../contexts/context.js";
+import type { SandpackContext } from "../../contexts/context.js";
 import './tabs.js'
-import { SandpackFile } from "../../types.js";
+import type { SandpackFile } from "../../types.js";
 import { css as langCss } from "@codemirror/lang-css";
 import { html as langHtml } from "@codemirror/lang-html";
 import { tags } from '@lezer/highlight';

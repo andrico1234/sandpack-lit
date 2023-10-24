@@ -1,4 +1,4 @@
-import { SandboxSetup } from "@codesandbox/sandpack-client";
+import type { SandboxSetup } from "@codesandbox/sandpack-client";
 
 const updatePackageJsonWithCustomDeps = (setup: SandboxSetup): SandboxSetup => {
   const { dependencies, devDependencies, files } = setup;

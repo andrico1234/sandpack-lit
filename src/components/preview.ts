@@ -1,14 +1,16 @@
-import {
+import type {
   SandpackClient,
-  loadSandpackClient,
   ClientOptions,
 } from "@codesandbox/sandpack-client";
-import { CSSResultGroup, LitElement, css, html } from "lit";
+import { loadSandpackClient } from "@codesandbox/sandpack-client";
+import { LitElement, css, html } from "lit";
+import type { CSSResultGroup } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { consume } from "@lit-labs/context";
-import { SandpackContext, sandpackContext } from "../contexts/context.js";
+import { sandpackContext } from "../contexts/context.js";
+import type { SandpackContext } from "../contexts/context.js";
 import { when } from "lit/directives/when.js";
-import { InitMode, SandboxTemplateKey } from "../types.js";
+import type { InitMode, SandboxTemplateKey } from "../types.js";
 import { ElementVisible } from "../mixins/ElementVisibleMixin.js";
 
 const options: ClientOptions = {
