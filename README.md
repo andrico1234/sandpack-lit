@@ -178,7 +178,7 @@ options:
 - initMode: "lazy" | "immediate"
 - closableTabs: boolean
 
-### `SandpackPresetComponent`
+### `<SandpackPresetComponent>`
 
 As web components do not work out of the box with React, you can use the `SandpackPresetComponent` instead to render `sandpack-preset`.
 
@@ -194,7 +194,7 @@ import { SandpackPresetComponent } from "sandpack-lit/dist/presets/sandpack-reac
 
 The props are the same as the `<sandpack-preset>` component.
 
-### `<sandpack-editor`
+### `<sandpack-editor>`
 
 This component is a wrapper around the [Codemirror](https://codemirror.net/). It sets up the editor with some basic syntax highlighting.
 
@@ -202,7 +202,7 @@ This component is a wrapper around the [Codemirror](https://codemirror.net/). It
 
 - closableTabs: boolean
 
-### `sandpack-preview`
+### `<sandpack-preview>`
 
 This component compiles the current code in the editor and renders it in an iframe using [Sandpack Client](https://github.com/codesandbox/sandpack/tree/main/sandpack-client)
 
@@ -215,9 +215,8 @@ This component compiles the current code in the editor and renders it in an ifra
 
 Sandpack Lit ships with a default theme, odyssey.css. You can also create your create your own. To do so, all you need to do is override the CSS variables with your own.
 
-You cna look at [odyssey.css](./src/themes/odyssey.css) for a list of available CSS variables that can be overridden.
+You can look at [odyssey.css](./src/themes/odyssey.css) for a list of available CSS variables you can override.
 
 ## Examples
 
 Have a look at the [frameworks](./frameworks/) directory for examples of how to use Sandpack Lit with your framework of choice.
-```
