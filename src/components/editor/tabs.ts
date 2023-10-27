@@ -46,7 +46,6 @@ class Tabs extends LitElement {
 
     button:focus {
       outline: 2px solid var(--sp-tab-focus-outline-color);
-      outline-offset: -4px;
     }
 
     li[data-active] button {
