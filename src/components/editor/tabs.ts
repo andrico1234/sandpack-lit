@@ -31,13 +31,14 @@ class Tabs extends LitElement {
 
     li {
       display: flex;
+      padding: 0 8px;
+      gap: 8px;
     }
 
     button {
       all: unset;
       cursor: pointer;
       opacity: var(--sp-tab-font-opacity-inactive, 0.6);
-      padding: 0 8px;
       color: var(--sp-tab-font-color, black);
       font-size: var(--sp-tab-font-size);
       font-family: var(--sp-font-body);
@@ -51,10 +52,15 @@ class Tabs extends LitElement {
     li[data-active] button {
       opacity: 1;
     }
+
+    .close-button {
+      display: flex;
+      align-items: center;
+    }
   `;
 
-  @property()
-  closeableTabs = false;
+  @property({ type: Boolean })
+  closableTabs = false;
 
   // @ts-ignore
   @consume({ context: sandpackContext, subscribe: true })
@@ -76,19 +82,19 @@ class Tabs extends LitElement {
 
     return html`<ul id="tabs">
       ${openFiles.map(
-        (file) =>
-          html`<li ?data-active=${activeFile === file}>
+      (file) =>
+        html`<li ?data-active=${activeFile === file}>
             <button @click=${() => this.updateActiveFile(file)}>${file}</button>
             ${when(
-              this.closeableTabs,
-              () => html`
-                <button @click=${() => this.closeFile(file)} aria-label="close">
+          this.closableTabs,
+          () => html`
+                <button class="close-button" @click=${() => this.closeFile(file)} aria-label="close">
                   ${closeIcon}
                 </button>
               `
-            )}
+        )}
           </li>`
-      )}
+    )}
     </ul>`;
   }
 }

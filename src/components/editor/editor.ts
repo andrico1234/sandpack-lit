@@ -174,7 +174,7 @@ class Editor extends LitElement {
 
   currKey!: string;
 
-  @property()
+  @property({ type: Boolean })
   closableTabs = false
 
   @query('#container')
