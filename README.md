@@ -10,6 +10,16 @@ Sandpack Lit is new and isn't near feature parity with the officially supported 
 
 If you'd like to learn more, please check out the [announcement article](https://component-odyssey.com/articles/00-sandpack-lit-universal).
 
+---
+## Sponsor
+Learn to build a component library using minimal tech with [Component Odyssey](https://component-odyssey.com/). As a result, you'll:
+
+- Become a more future-proof web developer
+- Build components that your users will love
+- Boost your career opportunities
+- Learn to do more with less
+---
+
 ## Quickstart
 
 The easiest way to use Sandpack Lit is through the `sandpack-preset` component. This component composes a handful of lower-level components under-the-hood that renders an editor, a preview, and context to manage state.
