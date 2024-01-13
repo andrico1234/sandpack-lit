@@ -50,7 +50,7 @@ const getEditorTheme = () =>
     },
 
     ".cm-activeLine": {
-      backgroundColor: `var(--sp-colors-surface-3)`,
+      // backgroundColor: `var(--sp-colors-surface-3)`,
     },
 
     ".cm-errorLine": {

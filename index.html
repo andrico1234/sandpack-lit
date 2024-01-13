@@ -13,15 +13,52 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    html {
+      height: 100%;
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+
+      color: black;
+
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background: #f7df1e;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      margin-top: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3.2em;
+      line-height: 1.1;
+    }
+
+    #sandpack-wrapper {
+      margin-inline: auto;
+      width: 900px;
+    }
+  </style>
 </head>
 
 <body>
-  <div>
+  <div style="position:absolute;opacity:0;">
     <h2>Template</h2>
     <button class="vite">Vite</button>
     <button class="node">Node</button>
   </div>
-  <div id="sandpack-wrapper" style="width: min(100%, 1200px); margin-inline: auto;">
+  <div id="sandpack-wrapper">
+    <h1>Vanilla</h1>
     <sandpack-preset></sandpack-preset>
   </div>
 
