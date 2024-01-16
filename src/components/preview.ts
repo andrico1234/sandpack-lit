@@ -34,11 +34,11 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
 
     #loading {
       position: absolute;
-      top: 50%;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      inset: 50% 0px 0px;
       text-align: center;
+      transform: translateY(-50%);
+      text-align: center;
+      height: fit-content;
     }
 
     #loading > p {
@@ -127,7 +127,13 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
 
   render() {
     return html`<div id="container">
-      ${when(this.status !== 'done', () => html`<div id="loading">
+      ${when(this.status === 'error', () => html`
+        <div id="loading">
+          <p>There was an error compiling your code</p>
+          <p>Please check that your code is correct. Browser privacy features can also cause issues</p>
+        </div>
+      `)}
+      ${when(this.status !== 'done' && this.status !== 'error', () => html`<div id="loading">
         <p>${this.status}</p>
       </div>`)}
       <iframe id="iframe"></iframe>
