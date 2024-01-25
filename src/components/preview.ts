@@ -45,6 +45,53 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
       margin: 0;
     }
 
+    #loading progress {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+           appearance: none;
+      width: calc(var(--sp-loading-indicator-size) + var(--sp-loading-indicator-border-size) * 2);
+      height: calc(var(--sp-loading-indicator-size) + var(--sp-loading-indicator-border-size) * 2);
+      margin: 8px;
+      position: relative;
+      border: 0;
+      background: none;
+    }
+
+    #loading progress:after {
+      content: " ";
+      display: block;
+      width: var(--sp-loading-indicator-size);
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: var(--sp-loading-indicator-size);
+      border-radius: 50%;
+      border: var(--sp-loading-indicator-border-size) solid #fff;
+      border-color: var(--sp-loading-indicator-color) transparent var(--sp-loading-indicator-color) transparent;
+      animation: loading 1.2s linear infinite;
+    }
+
+    @keyframes loading {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+    
+    #loading progress:indeterminate::-moz-progress-bar {
+      background: none; /* display:none doesn’t work, don’t ask me why */
+    }
+
+    #loading progress:indeterminate::-webkit-progress-bar {
+      display: none;
+    }
+  
+    loading progress:indeterminate::-ms-fill {
+      animation-name: none;
+    }
+
     iframe {
       border: 0;
       outline: 0;
@@ -135,6 +182,7 @@ class Preview extends ElementVisible(LitElement, { removeOnceVisible: true }) {
       `)}
       ${when(this.status !== 'done' && this.status !== 'error', () => html`<div id="loading">
         <p>${this.status}</p>
+        <progress></progress>
       </div>`)}
       <iframe id="iframe"></iframe>
     </div>`;
